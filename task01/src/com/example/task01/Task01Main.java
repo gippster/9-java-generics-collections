@@ -6,22 +6,36 @@ import java.io.InputStream;
 public class Task01Main {
     public static void main(String[] args) throws IOException {
 
-        // TODO С корректно реализованным классом Pair должен компилироваться и успешно работать следующий код:
+        // Создаем пару с двумя значениями
+        Pair<String, Integer> pair = Pair.of("Hello", 42);
 
-        /*
-        Pair<Integer, String> pair = Pair.of(1, "hello");
-        Integer i = pair.getFirst(); // 1
-        String s = pair.getSecond(); // "hello"
+        // Получаем элементы пары
+        System.out.println("1: " + pair.getFirst()); // Вывод: Hello
+        System.out.println("2: " + pair.getSecond()); // Вывод: 42
 
-        pair.ifPresent((first, second) -> {
-            System.out.println(first);
-            System.out.println(second);
-        });
+        // Проверяем работу ifPresent
+        pair.ifPresent((first, second) ->
+                System.out.println("1: " + first + " 2 " + second)
+        );
 
-        Pair<Integer, String> pair2 = Pair.of(1, "hello");
-        boolean mustBeTrue = pair.equals(pair2); // true!
-        boolean mustAlsoBeTrue = pair.hashCode() == pair2.hashCode(); // true!
-        */
+        // Создаем пару с одним значением null
+        Pair<String, Integer> halfEmptyPair = Pair.of("Hello", null);
+        halfEmptyPair.ifPresent((first, second) ->
+                System.out.println("223")
+        );
+
+        // Сравниваем пары
+        Pair<String, Integer> pair2 = Pair.of("Hello", 42);
+        System.out.println(pair.equals(pair2));
+
+        // Проверяем работу с null
+        Pair<String, String> emptyPair = Pair.of(null, null);
+        System.out.println(emptyPair.getFirst() + ", " + emptyPair.getSecond());
+        System.out.println(emptyPair.equals(Pair.of(null, null)));
+
+        // Проверяем корректность hashCode
+        System.out.println("pair: " + pair.hashCode());
+        System.out.println("pair2: " + pair2.hashCode());
 
     }
 
